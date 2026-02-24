@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://k0npsk6t1t40"]
+
+[ext_resource type="Script" uid="uid://dlt26od22mgp0" path="res://DeckEditor/deck_card.gd" id="1_tmdkr"]
+[ext_resource type="Texture2D" uid="uid://dmcoi867a0t53" path="res://Resources/Images/rush_duel_card_back.webp" id="2_uulb8"]
+[ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://Resources/Json/MinimalUI.tres" id="3_gtsu3"]
+[ext_resource type="Texture2D" uid="uid://cme7edi1k51gg" path="res://Resources/Images/banned.png" id="4_uulb8"]
+
+[node name="DeckCard" type="Panel" unique_id=2084202637 groups=["bannable_card"]]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(300, 443)
+size_flags_horizontal = 4
+size_flags_vertical = 3
+script = ExtResource("1_tmdkr")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2041448443]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 301.0
+offset_bottom = 498.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -392
+
+[node name="CardTextureButton" type="TextureRect" parent="VBoxContainer" unique_id=251477550]
+custom_minimum_size = Vector2(300, 419)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_uulb8")
+expand_mode = 4
+
+[node name="CardTextureButton2" type="TextureRect" parent="VBoxContainer" unique_id=937284757]
+visible = false
+custom_minimum_size = Vector2(300, 419)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_uulb8")
+expand_mode = 5
+
+[node name="CardTextureButton3" type="TextureRect" parent="VBoxContainer" unique_id=1251640765]
+visible = false
+custom_minimum_size = Vector2(300, 419)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_uulb8")
+expand_mode = 5
+
+[node name="CardMenuPanel" type="Panel" parent="." unique_id=923159462]
+visible = false
+layout_mode = 0
+offset_left = -2.0
+offset_right = -2.0
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardMenuPanel" unique_id=864126542]
+custom_minimum_size = Vector2(250, 400)
+layout_mode = 0
+offset_left = 12.0
+offset_top = 34.0
+offset_right = 291.0
+offset_bottom = 440.0
+theme_override_constants/separation = 2
+
+[node name="RemoveButton" type="Button" parent="CardMenuPanel/VBoxContainer" unique_id=1395478801]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme = ExtResource("3_gtsu3")
+theme_override_font_sizes/font_size = 77
+text = "Remove"
+
+[node name="MainButton" type="Button" parent="CardMenuPanel/VBoxContainer" unique_id=1834723134]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme = ExtResource("3_gtsu3")
+theme_override_font_sizes/font_size = 77
+text = "To Main"
+
+[node name="InventoryButton" type="Button" parent="CardMenuPanel/VBoxContainer" unique_id=588338098]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme = ExtResource("3_gtsu3")
+theme_override_font_sizes/font_size = 77
+text = "To Side"
+
+[node name="MaybeButton" type="Button" parent="CardMenuPanel/VBoxContainer" unique_id=1451120010]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme = ExtResource("3_gtsu3")
+theme_override_font_sizes/font_size = 77
+text = "To Extra"
+
+[node name="BannedRect" type="TextureRect" parent="." unique_id=188407082]
+visible = false
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 419.0
+mouse_filter = 2
+texture = ExtResource("4_uulb8")
+
+[node name="QuantityLabel" type="Label" parent="." unique_id=639430623]
+visible = false
+layout_mode = 1
+offset_left = 98.0
+offset_top = 330.0
+offset_right = 204.0
+offset_bottom = 476.6667
+theme = ExtResource("3_gtsu3")
+theme_override_constants/outline_size = 27
+theme_override_font_sizes/font_size = 128
+text = "x1"

@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://bek2vsm0ipkmw"]
+
+[ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://Resources/Json/MinimalUI.tres" id="1_kysw2"]
+[ext_resource type="Script" uid="uid://bu33ndglsq2ou" path="res://DeckEditor/filter_panel.gd" id="2_ulh8g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psw1p"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="FilterPanel" type="Panel" unique_id=1965092355]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -607.0
+offset_top = 42.0
+offset_bottom = 521.0
+grow_horizontal = 0
+theme = ExtResource("1_kysw2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_psw1p")
+script = ExtResource("2_ulh8g")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1912446566]
+layout_mode = 0
+offset_right = 606.0
+offset_bottom = 441.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=1038007157]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_kysw2")
+theme_override_constants/separation = 4
+
+[node name="SpinBoxGridContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer" unique_id=1704862074]
+layout_mode = 2
+theme_override_constants/v_separation = 8
+columns = 8
+
+[node name="LevelSpinBox" type="SpinBox" parent="ScrollContainer/VBoxContainer/SpinBoxGridContainer" unique_id=417351687]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_kysw2")
+min_value = -1.0
+max_value = 12.0
+value = -1.0
+prefix = "Level"
+
+[node name="AtkSpinBox" type="SpinBox" parent="ScrollContainer/VBoxContainer/SpinBoxGridContainer" unique_id=203247706]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_kysw2")
+min_value = -1.0
+max_value = 5000.0
+step = 100.0
+value = -1.0
+prefix = "ATK"
+
+[node name="DefSpinBox" type="SpinBox" parent="ScrollContainer/VBoxContainer/SpinBoxGridContainer" unique_id=828352018]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_kysw2")
+min_value = -1.0
+max_value = 5000.0
+step = 100.0
+value = -1.0
+prefix = "DEF"
+
+[node name="AttributeLabel" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1380041698]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_kysw2")
+text = "Attribute"
+
+[node name="AttributeGridContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer" unique_id=646373825]
+layout_mode = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = -3
+columns = 4
+
+[node name="MonsterAbilityLabel" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1004812668]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_kysw2")
+text = "Monster Ability"
+
+[node name="MonsterAbilityGridContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer" unique_id=1515257409]
+layout_mode = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = -3
+columns = 4
+
+[node name="CardTypeLabel" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=141644350]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_kysw2")
+text = "Card Type"
+
+[node name="CardTypeGridContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer" unique_id=1544888159]
+layout_mode = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = -3
+columns = 4
+
+[node name="MonsterTypeLabel" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1082285694]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_kysw2")
+text = "Monster Type"
+
+[node name="MonsterTypeGridContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer" unique_id=1655385574]
+layout_mode = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = -3
+columns = 4
+
+[node name="ClearFiltersButton" type="Button" parent="." unique_id=1777756428]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -33.0
+offset_right = 102.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_kysw2")
+text = "Clear Filters"
+
+[node name="SetFiltersButton" type="Button" parent="." unique_id=1117953929]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -93.5
+offset_top = -32.0
+offset_right = -0.5
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Set Filters"

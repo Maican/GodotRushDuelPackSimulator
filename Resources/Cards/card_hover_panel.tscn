@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://ecm7t8qssguc"]
+
+[ext_resource type="Script" uid="uid://cqeb3qb5e1wug" path="res://Resources/Cards/card_hover_panel.gd" id="1_sibey"]
+[ext_resource type="Texture2D" uid="uid://blnetymjdm7t1" path="res://Resources/Images/Title_Normal_monster.png" id="3_2lljj"]
+[ext_resource type="Texture2D" uid="uid://7r6idky4ntek" path="res://Resources/Images/EffectBox_Normal.png" id="4_x3rxb"]
+[ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://Resources/Json/MinimalUI.tres" id="5_jtqim"]
+
+[node name="HoverPanel" type="TextureRect" unique_id=887360046]
+visible = false
+custom_minimum_size = Vector2(300, 400)
+offset_right = 300.0
+offset_bottom = 436.2805
+scale = Vector2(1.5, 1.33)
+mouse_filter = 2
+expand_mode = 5
+script = ExtResource("1_sibey")
+
+[node name="TitleTextureRect" type="TextureRect" parent="." unique_id=191449289]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025641026
+anchor_top = 0.026666667
+anchor_right = 0.8005401
+anchor_bottom = 0.08190476
+texture = ExtResource("3_2lljj")
+expand_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TypeTextureRect" type="TextureRect" parent="." unique_id=93074640]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04029304
+anchor_top = 0.72380954
+anchor_right = 0.38226485
+anchor_bottom = 0.7561905
+offset_right = -1.5258789e-05
+texture = ExtResource("3_2lljj")
+expand_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="EffectBoxTextureRect" type="TextureRect" parent="." unique_id=1588308860]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03846154
+anchor_top = 0.75809526
+anchor_right = 0.955662
+anchor_bottom = 0.94095236
+texture = ExtResource("4_x3rxb")
+expand_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1932568089]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025641026
+anchor_top = 0.03809524
+anchor_right = 0.79222995
+anchor_bottom = 0.074285716
+theme = ExtResource("5_jtqim")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Black Luster Soldier - Envoy of the Evening Twilight"
+text_overrun_behavior = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="TypeLabel" type="Label" parent="." unique_id=1147626232]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03846154
+anchor_top = 0.72571427
+anchor_right = 0.37949482
+anchor_bottom = 0.7561905
+offset_right = -1.5258789e-05
+theme = ExtResource("5_jtqim")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Aqua/Effect"
+text_overrun_behavior = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="EffectLabel" type="RichTextLabel" parent="." unique_id=1612321178]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043956045
+anchor_top = 0.7657143
+anchor_right = 0.95012194
+anchor_bottom = 0.9352381
+mouse_filter = 1
+theme = ExtResource("5_jtqim")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 11
+text = "Finally got to visit that harbor specializing in Gunkan Suships that I've been curious about for a while! 
+The premium \"Shari\" here is limited to 2000 Suships a year, and uses specially developed smooth aged rice, giving it extra boldness not found anywhere else. 
+The classy atmosphere made my heart sing, too. "
+metadata/_edit_use_anchors_ = true

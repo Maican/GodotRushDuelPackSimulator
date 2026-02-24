@@ -1,0 +1,241 @@
+[gd_scene format=3 uid="uid://cb045wgw5aag"]
+
+[ext_resource type="Script" uid="uid://cktfgc7ktp1gk" path="res://DeckEditor/binder_card.gd" id="1_7u3du"]
+[ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://Resources/Json/MinimalUI.tres" id="3_2ccbo"]
+[ext_resource type="Texture2D" uid="uid://dmcoi867a0t53" path="res://Resources/Images/rush_duel_card_back.webp" id="3_shg1q"]
+[ext_resource type="Texture2D" uid="uid://cme7edi1k51gg" path="res://Resources/Images/banned.png" id="4_shg1q"]
+
+[node name="BinderCard" type="Panel" unique_id=180662140 groups=["bannable_card"]]
+offset_right = 357.0
+offset_bottom = 208.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_2ccbo")
+script = ExtResource("1_7u3du")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=456032345]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -1.0
+offset_right = 358.0
+offset_bottom = 206.0
+theme = ExtResource("3_2ccbo")
+theme_override_constants/separation = 1
+
+[node name="CardTexture" type="TextureRect" parent="HBoxContainer" unique_id=959060743]
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("3_2ccbo")
+texture = ExtResource("3_shg1q")
+expand_mode = 3
+
+[node name="NameLabel" type="Label" parent="HBoxContainer/CardTexture" unique_id=1137960345]
+custom_minimum_size = Vector2(100, 12)
+layout_mode = 0
+offset_left = 148.0
+offset_right = 334.0
+offset_bottom = 16.0
+theme = ExtResource("3_2ccbo")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 15
+text = "Card Name"
+text_overrun_behavior = 3
+
+[node name="QuantityLabel" type="Label" parent="HBoxContainer/CardTexture" unique_id=1939668734]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = -68.0
+offset_right = 91.0
+offset_bottom = -3.0
+grow_vertical = 0
+theme = ExtResource("3_2ccbo")
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 64
+text = "x1"
+
+[node name="EffectLabel" type="RichTextLabel" parent="HBoxContainer/CardTexture" unique_id=1646300992]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.1410675
+offset_top = -123.0
+offset_right = 195.14107
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_2ccbo")
+bbcode_enabled = true
+text = "This is some temporary effect text, meant to illustrate how big the text will be here."
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=971800686]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+mouse_filter = 0
+theme = ExtResource("3_2ccbo")
+theme_override_constants/separation = -3
+metadata/_edit_lock_ = true
+
+[node name="Placeholder" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=743523201]
+custom_minimum_size = Vector2(100, 12)
+layout_mode = 2
+theme = ExtResource("3_2ccbo")
+theme_override_font_sizes/font_size = 15
+text_overrun_behavior = 3
+metadata/_edit_lock_ = true
+
+[node name="CardTypeLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=2126532579]
+custom_minimum_size = Vector2(100, 12)
+layout_mode = 2
+theme = ExtResource("3_2ccbo")
+theme_override_font_sizes/font_size = 15
+text = "Card Type"
+autowrap_mode = 3
+
+[node name="AttributeLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=828962738]
+custom_minimum_size = Vector2(100, 12)
+layout_mode = 2
+theme = ExtResource("3_2ccbo")
+theme_override_font_sizes/font_size = 15
+text = "Attribute"
+autowrap_mode = 3
+
+[node name="MonsterTypeLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1643356250]
+custom_minimum_size = Vector2(75, 20)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_2ccbo")
+theme_override_font_sizes/font_size = 15
+text = "Monster Type"
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=187948133]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 0
+theme = ExtResource("3_2ccbo")
+theme_override_constants/separation = -3
+metadata/_edit_lock_ = true
+
+[node name="Placeholder" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1338967286]
+custom_minimum_size = Vector2(100, 12)
+layout_mode = 2
+theme = ExtResource("3_2ccbo")
+theme_override_font_sizes/font_size = 15
+text_overrun_behavior = 3
+metadata/_edit_lock_ = true
+
+[node name="LevelLabel" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1822279952]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme = ExtResource("3_2ccbo")
+theme_override_font_sizes/font_size = 15
+text = "Level: "
+
+[node name="AttackLabel" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=508269583]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme = ExtResource("3_2ccbo")
+theme_override_font_sizes/font_size = 15
+text = "ATK:"
+autowrap_mode = 3
+
+[node name="DefenseLabel" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1321681852]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme = ExtResource("3_2ccbo")
+theme_override_font_sizes/font_size = 15
+text = "DEF:"
+autowrap_mode = 3
+
+[node name="CardMenuPanel" type="Panel" parent="." unique_id=1200884719]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 110.0
+offset_bottom = 155.0
+mouse_filter = 2
+theme = ExtResource("3_2ccbo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardMenuPanel" unique_id=1812297631]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.5
+offset_top = -78.0
+offset_right = 92.5
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_2ccbo")
+theme_override_constants/separation = 1
+
+[node name="Main" type="Button" parent="CardMenuPanel/VBoxContainer" unique_id=2044325412]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme = ExtResource("3_2ccbo")
+theme_override_font_sizes/font_size = 38
+text = "Main"
+
+[node name="Banlist" type="Button" parent="CardMenuPanel/VBoxContainer" unique_id=1916069351]
+visible = false
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme = ExtResource("3_2ccbo")
+theme_override_font_sizes/font_size = 38
+text = "Ban Card"
+
+[node name="Binder" type="Button" parent="CardMenuPanel/VBoxContainer" unique_id=1775656739]
+visible = false
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme = ExtResource("3_2ccbo")
+theme_override_font_sizes/font_size = 38
+text = "Binder"
+text_overrun_behavior = 3
+autowrap_mode = 1
+
+[node name="Inventory" type="Button" parent="CardMenuPanel/VBoxContainer" unique_id=397627464]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme = ExtResource("3_2ccbo")
+theme_override_font_sizes/font_size = 38
+text = "Side"
+
+[node name="Maybe" type="Button" parent="CardMenuPanel/VBoxContainer" unique_id=807933036]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme = ExtResource("3_2ccbo")
+theme_override_font_sizes/font_size = 38
+text = "Extra"
+
+[node name="BannedRect" type="TextureRect" parent="." unique_id=619675867]
+visible = false
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 209.0
+mouse_filter = 2
+texture = ExtResource("4_shg1q")
+expand_mode = 1

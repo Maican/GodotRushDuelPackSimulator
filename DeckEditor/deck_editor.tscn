@@ -1,0 +1,313 @@
+[gd_scene format=3 uid="uid://bcmdh6sv5mepl"]
+
+[ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://Resources/Json/MinimalUI.tres" id="1_d5sny"]
+[ext_resource type="Script" uid="uid://dwwn2tcj7po2m" path="res://DeckEditor/deck_editor.gd" id="1_ppl21"]
+[ext_resource type="Texture2D" uid="uid://bk616vaur2fd2" path="res://Resources/Images/filter.png" id="2_psw1p"]
+[ext_resource type="Texture2D" uid="uid://brkiomx2rb8wd" path="res://Resources/Images/filter_pressed.png" id="3_cm8an"]
+[ext_resource type="Texture2D" uid="uid://186i4ui484qm" path="res://Resources/Images/filter_hovered.png" id="4_d5sny"]
+[ext_resource type="PackedScene" uid="uid://ecm7t8qssguc" path="res://Resources/Cards/card_hover_panel.tscn" id="5_u50s5"]
+[ext_resource type="Script" uid="uid://cxykw1xj63ex1" path="res://DeckEditor/binder_cards.gd" id="7_d5sny"]
+[ext_resource type="PackedScene" uid="uid://bek2vsm0ipkmw" path="res://DeckEditor/filter_panel.tscn" id="8_cm8an"]
+
+[node name="DeckEditor" type="Panel" unique_id=1676855035]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 5.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d5sny")
+script = ExtResource("1_ppl21")
+
+[node name="HoverPanel" parent="." unique_id=875692719 instance=ExtResource("5_u50s5")]
+top_level = true
+layout_mode = 0
+offset_left = 344.0
+offset_top = 99.0
+offset_right = 644.0
+offset_bottom = 655.846
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1776212768]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 52.0
+offset_right = 3061.0
+offset_bottom = 2429.0
+scale = Vector2(0.35, 0.35)
+theme = ExtResource("1_d5sny")
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=842027432]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_d5sny")
+
+[node name="DeckLabel" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=832581049]
+layout_mode = 2
+theme = ExtResource("1_d5sny")
+theme_override_font_sizes/font_size = 66
+text = "Deck"
+
+[node name="MainDeckGridContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer" unique_id=850478246]
+custom_minimum_size = Vector2(0, 1000)
+layout_mode = 2
+theme = ExtResource("1_d5sny")
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 10
+columns = 10
+
+[node name="ExtraDeckLabel" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=503135228]
+layout_mode = 2
+theme = ExtResource("1_d5sny")
+theme_override_font_sizes/font_size = 66
+text = "Extra Deck"
+
+[node name="ExtraDeckGridContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer" unique_id=1570316347]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_d5sny")
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 10
+
+[node name="InventoryLabel" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=807770799]
+layout_mode = 2
+theme = ExtResource("1_d5sny")
+theme_override_font_sizes/font_size = 66
+text = "Side Deck"
+
+[node name="InventoryGridContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer" unique_id=75784673]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_d5sny")
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 10
+
+[node name="BinderLabel" type="Label" parent="." unique_id=1061638613]
+layout_mode = 0
+anchor_left = 0.846367
+anchor_top = 0.013289
+anchor_right = 0.894768
+anchor_bottom = 0.0374995
+theme = ExtResource("1_d5sny")
+theme_override_font_sizes/font_size = 16
+text = "Binder:"
+metadata/_edit_use_anchors_ = true
+
+[node name="BinderList" type="OptionButton" parent="." unique_id=382603654]
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.878893
+anchor_top = 0.00775194
+anchor_right = 0.989619
+anchor_bottom = 0.0354374
+grow_horizontal = 0
+theme = ExtResource("1_d5sny")
+metadata/_edit_use_anchors_ = true
+
+[node name="BinderCards" type="Control" parent="." unique_id=111063746]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -351.0
+offset_top = -424.5
+offset_right = -12.0
+offset_bottom = 437.5
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("7_d5sny")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BinderCards" unique_id=2145630642]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 336.0
+offset_bottom = 41.0
+
+[node name="SortLabel" type="Label" parent="BinderCards/HBoxContainer" unique_id=1761533834]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_d5sny")
+theme_override_font_sizes/font_size = 16
+text = "Sort:"
+
+[node name="SortList" type="OptionButton" parent="BinderCards/HBoxContainer" unique_id=1621031015]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_d5sny")
+autowrap_mode = 3
+item_count = 8
+popup/item_0/text = "Name ASC"
+popup/item_0/id = 0
+popup/item_1/text = "Level ASC"
+popup/item_1/id = 1
+popup/item_2/text = "ATK ASC"
+popup/item_2/id = 2
+popup/item_3/text = "DEF ASC"
+popup/item_3/id = 3
+popup/item_4/text = "Name DES"
+popup/item_4/id = 4
+popup/item_5/text = "Level DES"
+popup/item_5/id = 5
+popup/item_6/text = "ATK DES"
+popup/item_6/id = 6
+popup/item_7/text = "DEF DES"
+popup/item_7/id = 7
+
+[node name="SearchBox" type="LineEdit" parent="BinderCards/HBoxContainer" unique_id=394782561]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_d5sny")
+placeholder_text = "\"legendary\"..etc"
+
+[node name="FilterButton" type="TextureButton" parent="BinderCards/HBoxContainer" unique_id=238444829]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_d5sny")
+toggle_mode = true
+texture_normal = ExtResource("3_cm8an")
+texture_pressed = ExtResource("2_psw1p")
+texture_hover = ExtResource("4_d5sny")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BinderCardsScroll" type="ScrollContainer" parent="BinderCards" unique_id=1650032545]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -335.0
+offset_top = -381.5
+offset_right = 7.0
+offset_bottom = 418.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("1_d5sny")
+horizontal_scroll_mode = 0
+
+[node name="BinderCardsVBox" type="VBoxContainer" parent="BinderCards/BinderCardsScroll" unique_id=369889837]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme = ExtResource("1_d5sny")
+theme_override_constants/separation = 210
+
+[node name="FilterPanel" parent="BinderCards" unique_id=1965092355 instance=ExtResource("8_cm8an")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 607.0
+offset_bottom = 479.0
+grow_horizontal = 1
+
+[node name="MainMenuButton" type="Button" parent="." unique_id=864242263]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 0
+offset_left = 3.0
+offset_top = 5.0
+offset_right = 53.0
+offset_bottom = 36.0
+theme = ExtResource("1_d5sny")
+text = "Back
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1249790392]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -633.5
+offset_top = 2.0
+offset_right = 295.5
+offset_bottom = 33.0
+grow_horizontal = 2
+theme = ExtResource("1_d5sny")
+theme_override_constants/separation = 15
+
+[node name="AddDeckButton" type="Button" parent="HBoxContainer" unique_id=1689692595]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_d5sny")
+text = "Add Deck"
+
+[node name="DeckListOptions" type="OptionButton" parent="HBoxContainer" unique_id=1872470447]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_d5sny")
+text_overrun_behavior = 3
+
+[node name="SaveDeckButton" type="Button" parent="HBoxContainer" unique_id=667582137]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_d5sny")
+text = "Save Deck"
+
+[node name="SaveDeckAsButton" type="Button" parent="HBoxContainer" unique_id=326848590]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_d5sny")
+text = "Save As..."
+
+[node name="ExportDeckButton" type="Button" parent="HBoxContainer" unique_id=1675299106]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_d5sny")
+text = "Export (clipboard)"
+
+[node name="DeckTypeLabel" type="Label" parent="HBoxContainer" unique_id=675091860]
+layout_mode = 2
+theme = ExtResource("1_d5sny")
+theme_override_font_sizes/font_size = 15
+text = "Type"
+
+[node name="DeckTypeOptions" type="OptionButton" parent="HBoxContainer" unique_id=602015836]
+layout_mode = 2
+theme = ExtResource("1_d5sny")
+selected = 0
+item_count = 2
+popup/item_0/text = "Rush Duel"
+popup/item_0/id = 0
+popup/item_1/text = "Rush Duel (OCG)"
+popup/item_1/id = 1
+
+[node name="BanlistLabel" type="Label" parent="HBoxContainer" unique_id=807396855]
+layout_mode = 2
+theme = ExtResource("1_d5sny")
+theme_override_font_sizes/font_size = 16
+text = "Banlist"
+metadata/_edit_use_anchors_ = true
+
+[node name="BanlistList" type="OptionButton" parent="HBoxContainer" unique_id=844481109]
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 2
+theme = ExtResource("1_d5sny")
+text_overrun_behavior = 3
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]

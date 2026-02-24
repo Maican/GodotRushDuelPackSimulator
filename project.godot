@@ -1,0 +1,45 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
+[application]
+
+config/name="Yu-Gi-Oh! Rush Duel Pack Simulator"
+config/version="0.2"
+run/main_scene="uid://3m7qpcqghqa4"
+config/features=PackedStringArray("4.6", "Forward Plus")
+config/icon="uid://cme7edi1k51gg"
+
+[autoload]
+
+PackOpenHelper="*res://pack_open_helper.gd"
+CardHelper="*res://card_helper.gd"
+DeckHelper="*res://deck_helper.gd"
+BinderHelper="*res://binder_helper.gd"
+SceneChanger="*res://scene_changer.gd"
+BanlistHelper="*res://banlist_helper.gd"
+
+[display]
+
+window/size/viewport_width=1440
+window/size/viewport_height=920
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
+[dotnet]
+
+project/assembly_name="RushDuelPackSim"
+
+[global_group]
+
+bannable_card=""

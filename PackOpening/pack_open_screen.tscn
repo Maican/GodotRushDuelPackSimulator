@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://cpf2rkwu4snkb"]
+
+[ext_resource type="Script" uid="uid://c62vbyhloaduh" path="res://PackOpening/pack_open_screen.gd" id="1_3eq66"]
+[ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://Resources/Json/MinimalUI.tres" id="1_s4nar"]
+[ext_resource type="PackedScene" uid="uid://ecm7t8qssguc" path="res://Resources/Cards/card_hover_panel.tscn" id="2_gxgix"]
+
+[node name="PackOpenScreen" type="Panel" unique_id=2128360928]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_s4nar")
+script = ExtResource("1_3eq66")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1709499219]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 34.0
+offset_right = 1241.0
+offset_bottom = 856.0
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer" unique_id=1552396021]
+layout_mode = 2
+theme = ExtResource("1_s4nar")
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 1
+columns = 4
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="." unique_id=1611042824]
+layout_mode = 0
+offset_left = 1255.0
+offset_top = 2.0
+offset_right = 1439.0
+offset_bottom = 855.0
+
+[node name="CardsOpenedContainer" type="VBoxContainer" parent="ScrollContainer2" unique_id=770521664]
+layout_mode = 2
+
+[node name="TotalLabel" type="Label" parent="ScrollContainer2/CardsOpenedContainer" unique_id=782689727]
+layout_mode = 2
+text = "Total = 0"
+
+[node name="Fabled" type="VBoxContainer" parent="ScrollContainer2/CardsOpenedContainer" unique_id=964847746]
+layout_mode = 2
+
+[node name="FabledLabel" type="Label" parent="ScrollContainer2/CardsOpenedContainer/Fabled" unique_id=1630595771]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Over Rush Rare"
+
+[node name="Marvel" type="VBoxContainer" parent="ScrollContainer2/CardsOpenedContainer" unique_id=1890432915]
+layout_mode = 2
+
+[node name="MarvelLabel" type="Label" parent="ScrollContainer2/CardsOpenedContainer/Marvel" unique_id=1426407858]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Secret Rare"
+
+[node name="Legendary" type="VBoxContainer" parent="ScrollContainer2/CardsOpenedContainer" unique_id=1438574099]
+layout_mode = 2
+
+[node name="LegendaryLabel" type="Label" parent="ScrollContainer2/CardsOpenedContainer/Legendary" unique_id=142595604]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Rush Rare"
+
+[node name="Majestic" type="VBoxContainer" parent="ScrollContainer2/CardsOpenedContainer" unique_id=180384286]
+layout_mode = 2
+
+[node name="MajesticLabel" type="Label" parent="ScrollContainer2/CardsOpenedContainer/Majestic" unique_id=1180026990]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Ultra Rare"
+
+[node name="SuperRare" type="VBoxContainer" parent="ScrollContainer2/CardsOpenedContainer" unique_id=551203107]
+layout_mode = 2
+
+[node name="SuperRareLabel" type="Label" parent="ScrollContainer2/CardsOpenedContainer/SuperRare" unique_id=1458119068]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Super Rare"
+
+[node name="Rare" type="VBoxContainer" parent="ScrollContainer2/CardsOpenedContainer" unique_id=677286027]
+layout_mode = 2
+
+[node name="RareLabel" type="Label" parent="ScrollContainer2/CardsOpenedContainer/Rare" unique_id=1273445376]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Rare"
+
+[node name="Common" type="VBoxContainer" parent="ScrollContainer2/CardsOpenedContainer" unique_id=1602701047]
+layout_mode = 2
+
+[node name="CommonLabel" type="Label" parent="ScrollContainer2/CardsOpenedContainer/Common" unique_id=428863160]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Common"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1518284699]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 860.0
+offset_right = 370.0
+offset_bottom = 896.0
+theme = ExtResource("1_s4nar")
+theme_override_constants/separation = 8
+
+[node name="AddBinderButton" type="Button" parent="HBoxContainer" unique_id=3521395]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme = ExtResource("1_s4nar")
+text = "Add New Binder"
+autowrap_mode = 3
+
+[node name="BinderList" type="OptionButton" parent="HBoxContainer" unique_id=1242281362]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("1_s4nar")
+
+[node name="SaveCardsButton" type="Button" parent="HBoxContainer" unique_id=676087275]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("1_s4nar")
+text = "Save"
+autowrap_mode = 3
+
+[node name="SaveAsCardsButton" type="Button" parent="HBoxContainer" unique_id=1252351654]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("1_s4nar")
+text = "Save As..."
+autowrap_mode = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=1722423674]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -78.0
+offset_top = -37.0
+offset_right = 504.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_s4nar")
+theme_override_constants/separation = 25
+
+[node name="NextPackButton" type="Button" parent="HBoxContainer2" unique_id=2143367518]
+layout_mode = 2
+theme = ExtResource("1_s4nar")
+text = "Next Pack"
+
+[node name="FlipCardsButton" type="Button" parent="HBoxContainer2" unique_id=345473938]
+layout_mode = 2
+theme = ExtResource("1_s4nar")
+text = "Flip All Cards"
+
+[node name="AutoFlipButton" type="CheckButton" parent="HBoxContainer2" unique_id=326403713]
+layout_mode = 2
+theme = ExtResource("1_s4nar")
+text = "AutoFlip"
+
+[node name="OpenRemainingButton" type="Button" parent="HBoxContainer2" unique_id=1872777342]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("1_s4nar")
+text = "Open Remaining Packs"
+autowrap_mode = 3
+
+[node name="MainMenuButton" type="Button" parent="." unique_id=1574134526]
+layout_mode = 1
+offset_right = 77.0
+offset_bottom = 31.0
+theme = ExtResource("1_s4nar")
+text = "Main Menu"
+
+[node name="HoverPanel" parent="." unique_id=960461554 instance=ExtResource("2_gxgix")]
+layout_mode = 0
+offset_left = 989.0
+offset_top = 222.0
+offset_right = 1289.0
+offset_bottom = 699.0
+theme = ExtResource("1_s4nar")
+
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]

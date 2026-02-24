@@ -1,0 +1,270 @@
+[gd_scene format=3 uid="uid://28qpm6mwubdv"]
+
+[ext_resource type="Script" uid="uid://bfiu1gi6w8k5v" path="res://BinderEditor/binder_editor.gd" id="1_lsr2a"]
+[ext_resource type="PackedScene" uid="uid://ecm7t8qssguc" path="res://Resources/Cards/card_hover_panel.tscn" id="2_grjlq"]
+[ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://Resources/Json/MinimalUI.tres" id="3_14l7q"]
+[ext_resource type="Script" uid="uid://cxykw1xj63ex1" path="res://DeckEditor/binder_cards.gd" id="4_ejpor"]
+[ext_resource type="Texture2D" uid="uid://brkiomx2rb8wd" path="res://Resources/Images/filter_pressed.png" id="5_c4bfe"]
+[ext_resource type="Texture2D" uid="uid://bk616vaur2fd2" path="res://Resources/Images/filter.png" id="6_c37jm"]
+[ext_resource type="Texture2D" uid="uid://186i4ui484qm" path="res://Resources/Images/filter_hovered.png" id="7_cgagq"]
+[ext_resource type="PackedScene" uid="uid://bek2vsm0ipkmw" path="res://DeckEditor/filter_panel.tscn" id="8_oeiwl"]
+
+[node name="BinderEditor" type="Panel" unique_id=743928947]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lsr2a")
+
+[node name="HoverPanel" parent="." unique_id=2115579706 instance=ExtResource("2_grjlq")]
+top_level = true
+layout_mode = 0
+offset_left = 406.0
+offset_top = 83.0
+offset_right = 706.0
+offset_bottom = 639.846
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1817749680]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 52.0
+offset_right = 3065.0
+offset_bottom = 2429.0
+scale = Vector2(0.35, 0.35)
+theme = ExtResource("3_14l7q")
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=1105338918]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_14l7q")
+theme_override_constants/separation = 24
+
+[node name="BinderCardsLabel" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=981624946]
+layout_mode = 2
+theme_override_font_sizes/font_size = 78
+text = "Binder Cards"
+
+[node name="BinderCardsGrid" type="GridContainer" parent="ScrollContainer/VBoxContainer" unique_id=2095452017]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("3_14l7q")
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 10
+
+[node name="AllCardsLabel" type="Label" parent="." unique_id=967526111]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.870833
+anchor_top = 0.00777778
+anchor_right = 0.916667
+anchor_bottom = 0.0322222
+theme = ExtResource("3_14l7q")
+theme_override_font_sizes/font_size = 16
+text = "All Cards"
+metadata/_edit_use_anchors_ = true
+
+[node name="BinderCards" type="Control" parent="." unique_id=1422782190]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -351.0
+offset_top = -424.5
+offset_right = -12.0
+offset_bottom = 437.5
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("4_ejpor")
+is_binder = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BinderCards" unique_id=1234360203]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 336.0
+offset_bottom = 41.0
+
+[node name="SortLabel" type="Label" parent="BinderCards/HBoxContainer" unique_id=722562364]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("3_14l7q")
+theme_override_font_sizes/font_size = 16
+text = "Sort:"
+
+[node name="SortList" type="OptionButton" parent="BinderCards/HBoxContainer" unique_id=146981628]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("3_14l7q")
+autowrap_mode = 3
+item_count = 8
+popup/item_0/text = "Name ASC"
+popup/item_0/id = 0
+popup/item_1/text = "Level ASC"
+popup/item_1/id = 1
+popup/item_2/text = "ATK ASC"
+popup/item_2/id = 2
+popup/item_3/text = "DEF ASC"
+popup/item_3/id = 3
+popup/item_4/text = "Name DES"
+popup/item_4/id = 4
+popup/item_5/text = "Level DES"
+popup/item_5/id = 5
+popup/item_6/text = "ATK DES"
+popup/item_6/id = 6
+popup/item_7/text = "DEF DES"
+popup/item_7/id = 7
+
+[node name="SearchBox" type="LineEdit" parent="BinderCards/HBoxContainer" unique_id=1053977357]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("3_14l7q")
+placeholder_text = "\"legendary\"..etc"
+
+[node name="FilterButton" type="TextureButton" parent="BinderCards/HBoxContainer" unique_id=568214018]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_14l7q")
+toggle_mode = true
+texture_normal = ExtResource("5_c4bfe")
+texture_pressed = ExtResource("6_c37jm")
+texture_hover = ExtResource("7_cgagq")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BinderCardsScroll" type="ScrollContainer" parent="BinderCards" unique_id=637157439]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -335.0
+offset_top = -381.5
+offset_right = 7.0
+offset_bottom = 418.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("3_14l7q")
+horizontal_scroll_mode = 0
+
+[node name="BinderCardsVBox" type="VBoxContainer" parent="BinderCards/BinderCardsScroll" unique_id=1908275549]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme = ExtResource("3_14l7q")
+theme_override_constants/separation = 210
+
+[node name="FilterPanel" parent="BinderCards" unique_id=1965092355 instance=ExtResource("8_oeiwl")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = -600.0
+offset_top = 91.5
+offset_right = 7.0
+offset_bottom = 570.5
+grow_horizontal = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=19494890]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -604.0
+offset_top = 3.0
+offset_right = 160.0
+offset_bottom = 34.0
+grow_horizontal = 2
+theme = ExtResource("3_14l7q")
+theme_override_constants/separation = 15
+
+[node name="AddBinderButton" type="Button" parent="HBoxContainer" unique_id=1473793068]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_14l7q")
+text = "Add Binder"
+
+[node name="BinderListOptions" type="OptionButton" parent="HBoxContainer" unique_id=1687890073]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_14l7q")
+text_overrun_behavior = 3
+
+[node name="SaveBinderButton" type="Button" parent="HBoxContainer" unique_id=1292230566]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_14l7q")
+text = "Save Binder"
+
+[node name="SaveBinderAsButton" type="Button" parent="HBoxContainer" unique_id=680048487]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_14l7q")
+text = "Save As..."
+
+[node name="ExportBinderButton" type="Button" parent="HBoxContainer" unique_id=1065372166]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_14l7q")
+text = "Export (clipboard)"
+
+[node name="DeleteBinderbutton" type="Button" parent="HBoxContainer" unique_id=1232245149]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Delete"
+
+[node name="BanlistLabel" type="Label" parent="." unique_id=1300697087]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.658333
+anchor_top = -0.00222222
+anchor_right = 0.658333
+anchor_bottom = -0.00222222
+offset_left = 89.0
+offset_top = 9.0
+offset_right = 131.0
+offset_bottom = 26.0
+theme = ExtResource("3_14l7q")
+theme_override_font_sizes/font_size = 16
+text = "Banlist"
+metadata/_edit_use_anchors_ = true
+
+[node name="BanlistList" type="OptionButton" parent="." unique_id=2134636458]
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.658333
+anchor_top = -0.00222222
+anchor_right = 0.658333
+anchor_bottom = -0.00222222
+offset_left = 146.0
+offset_top = 2.0
+offset_right = 296.0
+offset_bottom = 33.0
+theme = ExtResource("3_14l7q")
+text_overrun_behavior = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="MainMenuButton" type="Button" parent="." unique_id=51901627]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 31.0
+text = "Back"

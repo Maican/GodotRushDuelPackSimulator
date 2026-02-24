@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://3r0383radg8x"]
+
+[ext_resource type="Texture2D" uid="uid://dmcoi867a0t53" path="res://Resources/Images/rush_duel_card_back.webp" id="1_bxy01"]
+[ext_resource type="Script" uid="uid://cncehkc2xkyk2" path="res://Sets/set_panel.gd" id="1_goaxn"]
+[ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://Resources/Json/MinimalUI.tres" id="3_bxy01"]
+
+[sub_resource type="Theme" id="Theme_hk61m"]
+
+[node name="SetTexture" type="TextureButton" unique_id=1528935111]
+custom_minimum_size = Vector2(120, 180)
+offset_right = 60.0
+offset_bottom = 90.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_hk61m")
+toggle_mode = true
+keep_pressed_outside = true
+texture_normal = ExtResource("1_bxy01")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_goaxn")
+
+[node name="PackSizeLabel" type="Label" parent="." unique_id=1074902740]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 128.0
+offset_right = 225.0
+offset_bottom = 151.0
+theme = ExtResource("3_bxy01")
+theme_override_font_sizes/font_size = 17
+text = "5 Cards/Pack"
+
+[node name="PackAmountLabel" type="Label" parent="." unique_id=566865300]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 156.0
+offset_right = 203.0
+offset_bottom = 179.0
+theme = ExtResource("3_bxy01")
+theme_override_font_sizes/font_size = 17
+text = "100 Cards"
+
+[node name="PackNameLabel" type="Label" parent="." unique_id=138626691]
+layout_mode = 0
+offset_left = 123.0
+offset_top = 5.0
+offset_right = 373.0
+offset_bottom = 128.0
+theme = ExtResource("3_bxy01")
+theme_override_font_sizes/font_size = 17
+text = "Pack Name"
+autowrap_mode = 3

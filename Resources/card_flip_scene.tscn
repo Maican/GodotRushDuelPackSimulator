@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://dev58lrg8j6c"]
+
+[ext_resource type="Script" uid="uid://cfgktyypgh5gc" path="res://Resources/card_flip_scene.gd" id="2_hh34n"]
+[ext_resource type="Texture2D" uid="uid://dmcoi867a0t53" path="res://Resources/Images/rush_duel_card_back.webp" id="2_xnxma"]
+[ext_resource type="Texture2D" uid="uid://blnetymjdm7t1" path="res://Resources/Images/Title_Normal_monster.png" id="4_bp57u"]
+[ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://Resources/Json/MinimalUI.tres" id="4_gcq2g"]
+[ext_resource type="Texture2D" uid="uid://7r6idky4ntek" path="res://Resources/Images/EffectBox_Normal.png" id="5_x453x"]
+
+[node name="Card" type="TextureButton" unique_id=652776034]
+custom_minimum_size = Vector2(300, 419)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -161.5
+offset_right = 118.0
+offset_bottom = 161.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_xnxma")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_hh34n")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=274428583]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = 184.0
+offset_right = 16.0
+offset_bottom = 209.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xnxma")
+expand_mode = 2
+
+[node name="TitleTextureRect" type="TextureRect" parent="." unique_id=452822669]
+visible = false
+layout_mode = 0
+offset_left = 13.0
+offset_top = 9.5
+offset_right = 239.0
+offset_bottom = 38.5
+texture = ExtResource("4_bp57u")
+expand_mode = 1
+
+[node name="TypeTextureRect" type="TextureRect" parent="." unique_id=500782990]
+visible = false
+layout_mode = 0
+offset_left = 14.0
+offset_top = 301.5
+offset_right = 131.0
+offset_bottom = 318.5
+texture = ExtResource("4_bp57u")
+expand_mode = 1
+
+[node name="EffectBoxTextureRect" type="TextureRect" parent="." unique_id=1003706236]
+visible = false
+layout_mode = 0
+offset_left = 14.0
+offset_top = 319.5
+offset_right = 283.0
+offset_bottom = 394.5
+texture = ExtResource("5_x453x")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="." unique_id=276811840]
+visible = false
+layout_mode = 0
+offset_left = 13.0
+offset_top = 15.5
+offset_right = 239.0
+offset_bottom = 34.5
+theme = ExtResource("4_gcq2g")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Black Luster Soldier - Envoy of the Evening Twilight"
+text_overrun_behavior = 3
+
+[node name="TypeLabel" type="Label" parent="." unique_id=49341496]
+visible = false
+layout_mode = 0
+offset_left = 13.0
+offset_top = 303.5
+offset_right = 131.0
+offset_bottom = 319.5
+theme = ExtResource("4_gcq2g")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Aqua/Effect"
+text_overrun_behavior = 3
+
+[node name="EffectLabel" type="RichTextLabel" parent="." unique_id=1036326148]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 322.5
+offset_right = 299.0
+offset_bottom = 395.5
+theme = ExtResource("4_gcq2g")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 11
+text = "Finally got to visit that harbor specializing in Gunkan Suships that I've been curious about for a while! 
+The premium \"Shari\" here is limited to 2000 Suships a year, and uses specially developed smooth aged rice, giving it extra boldness not found anywhere else. 
+The classy atmosphere made my heart sing, too. "

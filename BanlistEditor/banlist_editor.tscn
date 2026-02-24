@@ -1,0 +1,267 @@
+[gd_scene format=3 uid="uid://i5070p3pt0kw"]
+
+[ext_resource type="Script" uid="uid://b82gq1xpjyox4" path="res://BanlistEditor/banlist_editor.gd" id="1_00feo"]
+[ext_resource type="PackedScene" uid="uid://ecm7t8qssguc" path="res://Resources/Cards/card_hover_panel.tscn" id="2_j37f2"]
+[ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://Resources/Json/MinimalUI.tres" id="3_4wmci"]
+[ext_resource type="Script" uid="uid://cxykw1xj63ex1" path="res://DeckEditor/binder_cards.gd" id="4_evgp1"]
+[ext_resource type="PackedScene" uid="uid://bek2vsm0ipkmw" path="res://DeckEditor/filter_panel.tscn" id="5_de4qf"]
+[ext_resource type="Texture2D" uid="uid://brkiomx2rb8wd" path="res://Resources/Images/filter_pressed.png" id="5_tdgqr"]
+[ext_resource type="Texture2D" uid="uid://bk616vaur2fd2" path="res://Resources/Images/filter.png" id="6_nbnsk"]
+[ext_resource type="Texture2D" uid="uid://186i4ui484qm" path="res://Resources/Images/filter_hovered.png" id="7_4h4t4"]
+
+[node name="BanlistEditor" type="Panel" unique_id=778564655]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_00feo")
+
+[node name="MainMenuButton" type="Button" parent="." unique_id=286638754]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 28.0
+text = "Back"
+
+[node name="HoverPanel" parent="." unique_id=290776296 instance=ExtResource("2_j37f2")]
+top_level = true
+layout_mode = 0
+offset_left = 401.0
+offset_top = 78.0
+offset_right = 701.0
+offset_bottom = 634.846
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1778516082]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 52.0
+offset_right = 3065.0
+offset_bottom = 2429.0
+scale = Vector2(0.35, 0.35)
+theme = ExtResource("3_4wmci")
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=1199639910]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_4wmci")
+theme_override_constants/separation = 24
+
+[node name="BannedCardsLabel" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1843465223]
+layout_mode = 2
+theme_override_font_sizes/font_size = 78
+text = "Forbidden Cards"
+
+[node name="BannedCards" type="GridContainer" parent="ScrollContainer/VBoxContainer" unique_id=272858507]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("3_4wmci")
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 10
+
+[node name="LimitedCardsLabel" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1406646532]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 78
+text = "Limited Cards"
+
+[node name="LimitedCards" type="GridContainer" parent="ScrollContainer/VBoxContainer" unique_id=1137102841]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("3_4wmci")
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 10
+
+[node name="SemiLimitedCardsLabel" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1502271021]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 78
+text = "Semi-Limited Cards"
+
+[node name="SemiLimitedCards" type="GridContainer" parent="ScrollContainer/VBoxContainer" unique_id=646977463]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("3_4wmci")
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 10
+
+[node name="AllCardsLabel" type="Label" parent="." unique_id=1329477164]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.757093
+anchor_top = 0.00998336
+anchor_right = 0.805494
+anchor_bottom = 0.0341938
+theme = ExtResource("3_4wmci")
+theme_override_font_sizes/font_size = 16
+text = "All Cards:"
+metadata/_edit_use_anchors_ = true
+
+[node name="BinderCards" type="Control" parent="." unique_id=1114331158]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -351.0
+offset_top = -424.5
+offset_right = -12.0
+offset_bottom = 437.5
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("4_evgp1")
+is_banlist = true
+
+[node name="FilterPanel" parent="BinderCards" unique_id=1965092355 instance=ExtResource("5_de4qf")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 607.0
+offset_bottom = 479.0
+grow_horizontal = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BinderCards" unique_id=432499820]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 336.0
+offset_bottom = 41.0
+
+[node name="SortLabel" type="Label" parent="BinderCards/HBoxContainer" unique_id=171013996]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("3_4wmci")
+theme_override_font_sizes/font_size = 16
+text = "Sort:"
+
+[node name="SortList" type="OptionButton" parent="BinderCards/HBoxContainer" unique_id=1889235708]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("3_4wmci")
+autowrap_mode = 3
+item_count = 8
+popup/item_0/text = "Name ASC"
+popup/item_0/id = 0
+popup/item_1/text = "Level ASC"
+popup/item_1/id = 1
+popup/item_2/text = "ATK ASC"
+popup/item_2/id = 2
+popup/item_3/text = "DEF ASC"
+popup/item_3/id = 3
+popup/item_4/text = "Name DES"
+popup/item_4/id = 4
+popup/item_5/text = "Level DES"
+popup/item_5/id = 5
+popup/item_6/text = "ATK DES"
+popup/item_6/id = 6
+popup/item_7/text = "DEF DES"
+popup/item_7/id = 7
+
+[node name="SearchBox" type="LineEdit" parent="BinderCards/HBoxContainer" unique_id=1013210122]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("3_4wmci")
+placeholder_text = "\"blue-eyes\"..etc"
+
+[node name="FilterButton" type="TextureButton" parent="BinderCards/HBoxContainer" unique_id=1247371603]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_4wmci")
+toggle_mode = true
+texture_normal = ExtResource("5_tdgqr")
+texture_pressed = ExtResource("6_nbnsk")
+texture_hover = ExtResource("7_4h4t4")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BinderCardsScroll" type="ScrollContainer" parent="BinderCards" unique_id=626741000]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -335.0
+offset_top = -381.5
+offset_right = 7.0
+offset_bottom = 418.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("3_4wmci")
+horizontal_scroll_mode = 0
+
+[node name="BinderCardsVBox" type="VBoxContainer" parent="BinderCards/BinderCardsScroll" unique_id=720283491]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme = ExtResource("3_4wmci")
+theme_override_constants/separation = 210
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1746616086]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -433.5
+offset_right = 330.5
+offset_bottom = 31.0
+grow_horizontal = 2
+theme = ExtResource("3_4wmci")
+theme_override_constants/separation = 15
+
+[node name="AddBanlistButton" type="Button" parent="HBoxContainer" unique_id=1186745822]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_4wmci")
+text = "Add Banlist"
+
+[node name="BanlistListOptions" type="OptionButton" parent="HBoxContainer" unique_id=1681052740]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_4wmci")
+text_overrun_behavior = 3
+
+[node name="SaveBanlistButton" type="Button" parent="HBoxContainer" unique_id=81494865]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_4wmci")
+text = "Save Banlist"
+
+[node name="SaveBanlistAsButton" type="Button" parent="HBoxContainer" unique_id=1796547307]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_4wmci")
+text = "Save As..."
+
+[node name="ExportBanlistButton" type="Button" parent="HBoxContainer" unique_id=628137484]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_4wmci")
+text = "Export (clipboard)"
+
+[node name="DeleteBanlistbutton" type="Button" parent="HBoxContainer" unique_id=1556071456]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Delete"

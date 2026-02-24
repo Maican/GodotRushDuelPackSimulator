@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://3r0383radg8x"]
+
+[ext_resource type="Script" uid="uid://cncehkc2xkyk2" path="res://Sets/set_panel.gd" id="1_goaxn"]
+[ext_resource type="Texture2D" uid="uid://bdjmokrl82uf" path="res://PackResources/Images/RDKP21-BoosterJP.png" id="1_jw0dq"]
+[ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://Resources/Json/MinimalUI.tres" id="3_bxy01"]
+
+[sub_resource type="Theme" id="Theme_hk61m"]
+
+[node name="SetTexture" type="TextureButton" unique_id=1528935111]
+custom_minimum_size = Vector2(60, 90)
+offset_right = 60.0
+offset_bottom = 90.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_hk61m")
+texture_normal = ExtResource("1_jw0dq")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_goaxn")
+
+[node name="PackSizeLabel" type="Label" parent="." unique_id=1074902740]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 54.0
+offset_right = 165.0
+offset_bottom = 77.0
+theme = ExtResource("3_bxy01")
+theme_override_font_sizes/font_size = 17
+text = "5 Cards/Pack"
+
+[node name="PackAmountLabel" type="Label" parent="." unique_id=566865300]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 73.0
+offset_right = 141.0
+offset_bottom = 96.0
+theme = ExtResource("3_bxy01")
+theme_override_font_sizes/font_size = 17
+text = "100 Cards"
+
+[node name="PackNameLabel" type="Label" parent="." unique_id=138626691]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 3.0
+offset_right = 139.0
+offset_bottom = 26.0
+theme = ExtResource("3_bxy01")
+theme_override_font_sizes/font_size = 17
+text = "Pack Name"
