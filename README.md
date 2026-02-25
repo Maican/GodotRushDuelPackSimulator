@@ -2,6 +2,7 @@
 
 A Godot-based simulator for opening Yu-Gi-Oh! Rush Duel card packs, building decks, managing binders, and creating banlists.
 
+Special thanks to Konami for the amazing game we still don't have, and Cimoooooooo and Nyhmnim's progression series which inspired this for Rush Duel!
 ---
 
 ## Main Menu
