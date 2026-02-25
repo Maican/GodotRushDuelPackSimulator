@@ -125,6 +125,7 @@ text = "Disclaimer: This tool is meant to simulate opening Rush Duel packs to pl
 autowrap_mode = 2
 
 [node name="DevMenuButton" type="MenuButton" parent="." unique_id=1212357649]
+visible = false
 layout_mode = 0
 offset_left = 1358.0
 offset_top = 2.0
