@@ -30,7 +30,7 @@ class_name CardResource
 @export var series : CardHelper.Series = CardHelper.Series.None
 
 func load_texture() -> CompressedTexture2D:
-	return ResourceLoader.load(image_path, ".jpg")
+	return ResourceLoader.load(image_path, ".webp")
 
 func pretty_print_card_type() -> String:
 	return CardHelper.CardType.keys()[card_type].replace("_", " ")

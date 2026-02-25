@@ -37,6 +37,7 @@ func import_cards() -> void:
 	DirAccess.make_dir_absolute("user://BinderResources")
 	DirAccess.make_dir_absolute("user://DeckResources")
 	DirAccess.make_dir_absolute("res://CardResources")
+	DirAccess.make_dir_absolute("res://CardResources/Images")
 	
 	# Step 1: Create PackResources from rush_sets.json
 	create_pack_resources_from_sets()
@@ -47,6 +48,67 @@ func import_cards() -> void:
 	# Step 3: Start downloading images
 	_start_next_pack_image_batch()
 	_start_next_image_batch()
+
+func download_missing_card_textures() -> void:
+	DirAccess.make_dir_absolute("res://CardResources/Images")
+	progress_string = "Scanning card resources for missing textures..."
+	progress_string_changed.emit()
+	
+	var dir_access := DirAccess.open(CARD_FILE_LOCATION)
+	if dir_access == null:
+		push_error("Could not open card resource directory: " + CARD_FILE_LOCATION)
+		progress_string = "Failed to open CardResources directory"
+		progress_string_changed.emit()
+		return
+	
+	# Reset queue to avoid stale entries from previous runs.
+	image_queue.clear()
+	image_paths.clear()
+	
+	var scanned_cards : int = 0
+	var existing_images : int = 0
+	var queued_downloads : int = 0
+	for file_name in dir_access.get_files():
+		if !file_name.ends_with(".res") and !file_name.ends_with(".tres"):
+			continue
+		scanned_cards += 1
+		
+		var card_path := CARD_FILE_LOCATION + file_name
+		var card_resource : CardResource = ResourceLoader.load(card_path)
+		if card_resource == null:
+			continue
+		
+		if card_resource.id.is_empty():
+			card_resource.id = file_name.get_basename()
+		
+		if card_resource.image_path.is_empty():
+			card_resource.image_path = CARD_FILE_LOCATION + "Images/" + card_resource.id + ".webp"
+			ResourceSaver.save(card_resource, card_resource.resource_path)
+		
+		if FileAccess.file_exists(card_resource.image_path):
+			existing_images += 1
+			continue
+		
+		if card_resource.image_url.is_empty():
+			continue
+		
+		# Avoid duplicate requests for the same card ID.
+		if image_paths.has(card_resource.id):
+			continue
+		
+		image_paths[card_resource.id] = card_resource.image_path
+		image_queue.append(card_resource)
+		queued_downloads += 1
+	
+	if queued_downloads > 0:
+		progress_string = "Queued " + str(queued_downloads) + " missing card images (" + str(existing_images) + " already present / " + str(scanned_cards) + " scanned)"
+		progress_string_changed.emit()
+		download_started.emit()
+		_start_next_image_batch()
+	else:
+		progress_string = "No missing card images found (" + str(existing_images) + " present / " + str(scanned_cards) + " scanned)"
+		progress_string_changed.emit()
+		download_finished.emit()
 
 func create_pack_resources_from_sets() -> void:
 	if !FileAccess.file_exists(RUSH_SETS_JSON):
@@ -315,8 +377,7 @@ func _start_next_pack_image_batch():
 		if error != OK:
 			push_error("An error occurred in the API request for pack image: " + pack_resource.pack_name)
 			active_pack_requests -= 1
-	if pack_image_queue.size() == 0 and active_pack_requests == 0:
-		pass  # All pack images downloaded
+	_check_all_downloads_finished()
 
 func _start_next_image_batch():
 	download_started.emit()
@@ -333,7 +394,10 @@ func _start_next_image_batch():
 		if error != OK:
 			push_error("An error occurred in the API request for card image: " + card_resource.name)
 			active_requests -= 1
-	if image_queue.size() == 0 and active_requests == 0:
+	_check_all_downloads_finished()
+
+func _check_all_downloads_finished() -> void:
+	if image_queue.size() == 0 and pack_image_queue.size() == 0 and active_requests == 0 and active_pack_requests == 0:
 		download_finished.emit()
 
 func _http_pack_api_request_completed(result, response_code, headers, body, pack_resource, http_request):
@@ -381,7 +445,9 @@ func _http_pack_image_download_completed(result, response_code, headers, body, p
 			if file:
 				file.store_buffer(body)
 				file.close()
-				pack_resource.pack_texture = ResourceLoader.load(pack_resource.pack_image_path)
+				pack_resource.pack_texture = _texture_from_image_buffer(body)
+				if pack_resource.pack_texture == null:
+					pack_resource.pack_texture = _texture_from_file(pack_resource.pack_image_path)
 				ResourceSaver.save(pack_resource)
 			else:
 				push_error("Failed to open file for writing: " + pack_resource.pack_image_path)
@@ -467,6 +533,27 @@ func _http_card_image_download_completed(result, response_code, headers, body, c
 	active_requests -= 1
 	http_request.queue_free()
 	_start_next_image_batch()
+
+func _texture_from_image_buffer(buffer: PackedByteArray) -> Texture2D:
+	var image := Image.new()
+	var error := image.load_png_from_buffer(buffer)
+	if error != OK:
+		error = image.load_webp_from_buffer(buffer)
+	if error != OK:
+		error = image.load_jpg_from_buffer(buffer)
+	if error == OK:
+		return ImageTexture.create_from_image(image)
+	return null
+
+func _texture_from_file(path: String) -> Texture2D:
+	if !FileAccess.file_exists(path):
+		return null
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		return null
+	var data := file.get_buffer(file.get_length())
+	file.close()
+	return _texture_from_image_buffer(data)
 	
 func assign_card_to_pack(pack_resource:PackResource, card_resource:CardResource) -> void:
 	match card_resource.rarity:
@@ -625,6 +712,38 @@ func load_json_into_card(json:Dictionary, card_resource:CardResource) -> void:
 		card_resource.print_id = card_resource.id
 
 func set_pack_textures() -> void:
+	DirAccess.make_dir_absolute("res://PackResources/Images")
+	progress_string = "Scanning packs for missing textures..."
+	progress_string_changed.emit()
+	download_started.emit()
+	var scanned_packs : int = 0
+	var assigned_from_disk : int = 0
+	var queued_downloads : int = 0
+	
 	for pack : PackResource in PackOpenHelper.packs.values():
-		pack.pack_texture = ResourceLoader.load(pack.pack_image_path)
-		ResourceSaver.save(pack)
+		if pack.pack_code.is_empty():
+			continue
+		scanned_packs += 1
+		
+		var pack_image_code : String = pack.pack_code.replace("/", "")
+		if pack.pack_image_filename.is_empty():
+			pack.pack_image_filename = pack_image_code + "-BoosterJP.png"
+		if pack.pack_image_path.is_empty():
+			pack.pack_image_path = PACK_FILE_LOCATION + "Images/" + pack.pack_image_filename
+		
+		if FileAccess.file_exists(pack.pack_image_path):
+			pack.pack_texture = _texture_from_file(pack.pack_image_path)
+			ResourceSaver.save(pack)
+			assigned_from_disk += 1
+		else:
+			pack_image_queue.append(pack)
+			queued_downloads += 1
+	
+	if queued_downloads > 0:
+		progress_string = "Queued " + str(queued_downloads) + " pack images (" + str(assigned_from_disk) + " already assigned / " + str(scanned_packs) + " scanned)"
+		progress_string_changed.emit()
+		_start_next_pack_image_batch()
+	else:
+		progress_string = "Pack textures ready (" + str(assigned_from_disk) + " assigned / " + str(scanned_packs) + " scanned)"
+		progress_string_changed.emit()
+		download_finished.emit()

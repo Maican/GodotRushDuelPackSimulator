@@ -60,6 +60,9 @@ func switch_to_banlist_editor_scene() -> void:
 
 func switch_to_binder_editor_scene() -> void:
 	SceneChanger.switch_to_binder_editor_scene()
+
+func download_missing_card_textures() -> void:
+	json_importer.download_missing_card_textures()
 	
 func exit() -> void:
 	get_tree().quit()
@@ -89,3 +92,5 @@ func dev_menu_button_pressed(item_id : int) -> void:
 		OS.shell_show_in_file_manager(ProjectSettings.globalize_path("user://"))
 	elif item_id == 3:
 		json_importer.set_pack_textures()
+	elif item_id == 4:
+		download_missing_card_textures()
