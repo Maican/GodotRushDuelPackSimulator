@@ -1,5 +1,7 @@
 # Rush Duel Pack Simulator
 
+<img src="Resources/Images/Screenshots/title.png" alt="Rush Duel Pack Simulator Title" width="800" />
+
 A Godot-based simulator for opening Yu-Gi-Oh! Rush Duel card packs, building decks, managing binders, and creating banlists.
 
 Special thanks to Konami for the amazing game we still don't have, and Cimoooooooo and Nyhmnim's progression series which inspired this for Rush Duel!
@@ -21,6 +23,8 @@ The main menu is the central hub of the application. From here you can navigate 
 
 ### 1. Pack Selection Screen
 
+<img src="Resources/Images/Screenshots/open_packs_screen.png" alt="Pack Selection Screen" width="800" />
+
 After clicking **Open Pack**, you are taken to the pack selection screen.
 
 - All available packs are displayed as image tiles in a grid.
@@ -30,6 +34,8 @@ After clicking **Open Pack**, you are taken to the pack selection screen.
 - A **Main Menu** button returns you to the hub at any time.
 
 ### 2. Pack Opening Screen
+
+<img src="Resources/Images/Screenshots/opening_pack_screen.png" alt="Pack Opening Screen" width="800" />
 
 Cards are dealt face-down and must be revealed individually or all at once.
 
@@ -55,6 +61,8 @@ Once all packs have been opened, the save controls become active:
 ---
 
 ## Binder Editor
+
+<img src="Resources/Images/Screenshots/binder_management_screen.png" alt="Binder Editor" width="800" />
 
 The Binder Editor lets you organize and manage your card collection across named binders.
 
@@ -88,6 +96,8 @@ The screen is split into two panels:
 ---
 
 ## Deck Editor
+
+<img src="Resources/Images/Screenshots/deck_editing_screen.png" alt="Deck Editor" width="800" />
 
 The Deck Editor is used to build Rush Duel-legal decks from your binder collections.
 
@@ -127,6 +137,8 @@ On the left, the **BinderCards** panel shows a selected binder's card pool for b
 ---
 
 ## Banlist Editor
+
+<img src="Resources/Images/Screenshots/banlist_screen.png" alt="Banlist Editor" width="800" />
 
 The Banlist Editor lets you create custom restriction lists to use in the Deck Editor and Binder Editor.
 
