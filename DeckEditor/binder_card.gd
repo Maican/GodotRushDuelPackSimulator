@@ -103,6 +103,8 @@ func update_labels() -> void:
 
 	if card_resource.card_effect:
 		effect_label.text = card_resource.pretty_print_effect_text()
+	elif card_resource.flavour_text:
+		effect_label.text = card_resource.flavour_text
 	
 	if card_resource.card_type == CardHelper.CardType.Monster:
 		visible_right_column_item_count += 1
@@ -145,7 +147,7 @@ func unban_card() -> void:
 
 func check_if_banned(banlist : BanlistResource) -> void:
 	if banlist != null:
-		if card_resource.id in banlist.cards.keys():
+		if card_resource.id in banlist.cards:
 			ban_card()
 		else:
 			unban_card()

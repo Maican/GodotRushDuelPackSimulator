@@ -488,7 +488,7 @@ func _http_card_api_request_completed(result, response_code, headers, body, card
 						http_request.queue_free()
 						return
 		
-		push_warning("Could not find image URL for card: " + card_resource.name + " (File: " + card_resource.image_url + ")")
+		push_warning("Could not find image URL for card: " + card_resource.name + " (File: " + card_resource.image_url + ") " + str(card_resource.id) )
 		active_requests -= 1
 	else:
 		push_warning("API request failed for card image: " + card_resource.name)

@@ -107,7 +107,7 @@ func unban_card() -> void:
 
 func check_if_banned(banlist : BanlistResource) -> void:
 	if banlist != null:
-		if card_resource.id in banlist.cards.keys():
+		if card_resource.id in banlist.cards:
 			ban_card()
 		else:
 			unban_card()

@@ -3,10 +3,10 @@ extends Resource
 class_name DeckResource
 
 @export var name : String = "Deck"
-# CardName Key - [quantity, card_resource]
-@export var main_deck : Dictionary[String, Array] = {}
-@export var inventory : Dictionary[String, Array] = {}
-@export var maybes : Dictionary[String, Array] = {}
+## card_id → quantity (CardResource looked up via CardDatabase at runtime)
+@export var main_deck : Dictionary[String, int] = {}
+@export var inventory : Dictionary[String, int] = {}
+@export var maybes : Dictionary[String, int] = {}
 @export var deck_type : DeckHelper.DeckType = DeckHelper.DeckType.Standard
 
 func export_deck() -> String:

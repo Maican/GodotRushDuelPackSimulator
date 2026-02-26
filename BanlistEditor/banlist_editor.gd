@@ -152,8 +152,9 @@ func save_cards_to_banlist() -> void:
 		print("Banlist resource not found: " + banlist_path)
 		return
 	banlist.clear_banlist()
+	banlist.name = banlist_name
 	for card_id : String in banned_cards:
-		banlist.cards[card_id] = banned_cards[card_id]
+		banlist.cards.append(card_id)
 
 	ResourceSaver.save(banlist, banlist.resource_path)
 
@@ -175,8 +176,10 @@ func load_cards_from_banlist() -> void:
 		return
 	
 	remove_all_cards()
-	for card_resource : CardResource in banlist.cards.values():
-		add_card_to_banlist(card_resource)
+	for card_id : String in banlist.cards:
+		var card_resource := CardDatabase.get_card(card_id)
+		if card_resource != null:
+			add_card_to_banlist(card_resource)
 		
 func remove_card(card_scene : DeckCard) -> void:
 	match card_scene.card_location:
@@ -207,8 +210,10 @@ func export_banlist() -> void:
 		return
 	
 	var banlist_string = "Banlist cards\n"
-	for card_resource : CardResource in banlist.cards.values():
-		banlist_string += str(card_resource.name) + "\n"
+	for card_id : String in banlist.cards:
+		var card_resource : CardResource = CardDatabase.get_card(card_id)
+		if card_resource != null:
+			banlist_string += str(card_resource.name) + "\n"
 	DisplayServer.clipboard_set(banlist_string)
 	var dialog = AcceptDialog.new()
 	dialog.dialog_text = "Saved banlist set to clipboard."

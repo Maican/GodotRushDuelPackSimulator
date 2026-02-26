@@ -96,7 +96,7 @@ func update_visible_cards():
 			card_scene.card_resource = card_resource
 			card_scene.is_binder_card = is_binder
 			card_scene.is_banlist_card = is_banlist
-			card_scene.quantity = binder.cards[card_id][0]
+			card_scene.quantity = binder.cards[card_id]
 			card_scene.card_hovered.connect(show_hover_panel.emit.bind(card_scene))
 			card_scene.card_unhovered.connect(hide_hover_panel.emit)
 			card_scene.card_add_to_inventory.connect(add_card_to_inventory.emit)
@@ -107,7 +107,7 @@ func update_visible_cards():
 			scrolled.connect(card_scene.should_load_texture)
 			binder_cards_v_box.add_child(card_scene)
 			if current_banlist:
-				if card_resource.id in current_banlist.cards.keys():
+				if card_resource.id in current_banlist.cards:
 					card_scene.ban_card()
 			card_scene.name = card_id
 			loaded_binder_card_scenes[card_id] = card_scene
@@ -142,7 +142,9 @@ func load_binder(binder_path : String) -> void:
 	# Reset the filtered list before populating (prevents duplicates)
 	filtered_binder_card_resources.clear()
 	for key : String in binder.cards:
-		filtered_binder_card_resources.append(binder.cards[key][1])
+		var card := CardDatabase.get_card(key)
+		if card != null:
+			filtered_binder_card_resources.append(card)
 
 	filtered_binder_card_resources.sort_custom(func(a:CardResource, b:CardResource):
 		return a.name < b.name
@@ -165,7 +167,9 @@ func binder_selected(index: int, binder_list : OptionButton) -> void:
 	binder = ResourceLoader.load(binder_path)
 
 	for key : String in binder.cards:
-		filtered_binder_card_resources.append(binder.cards[key][1])
+		var card := CardDatabase.get_card(key)
+		if card != null:
+			filtered_binder_card_resources.append(card)
 
 	filtered_binder_card_resources.sort_custom(func(a:CardResource, b:CardResource):
 		return a.name < b.name
@@ -184,7 +188,9 @@ func update_binder_display() -> void:
 	# Rebuild the filtered list from the binder (clear first to avoid accumulation)
 	filtered_binder_card_resources.clear()
 	for key : String in binder.cards:
-		filtered_binder_card_resources.append(binder.cards[key][1])
+		var card := CardDatabase.get_card(key)
+		if card != null:
+			filtered_binder_card_resources.append(card)
 	
 	var filter_map = filter_panel.current_filters
 

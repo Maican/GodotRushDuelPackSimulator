@@ -22,6 +22,7 @@ config/icon="uid://cme7edi1k51gg"
 
 [autoload]
 
+CardDatabase="*res://card_database.gd"
 PackOpenHelper="*res://pack_open_helper.gd"
 CardHelper="*res://card_helper.gd"
 DeckHelper="*res://deck_helper.gd"

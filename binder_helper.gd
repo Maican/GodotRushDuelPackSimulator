@@ -38,38 +38,14 @@ func create_mega_binder() -> void:
 	var mega_binder : BinderResource = BinderResource.new()
 	mega_binder.resource_name = "all_cards"
 	mega_binder.name = "all_cards"  # Set the name field that BinderResource uses
-	var card_paths : Array[String] = get_all_res_files("res://CardResources")
 	var ticks_before : int = Time.get_ticks_msec()
-	for card_path : String in card_paths:
-		var card_resource : CardResource = ResourceLoader.load(card_path)
-		if card_resource != null:
-			mega_binder.cards.set(card_resource.id, [1, card_resource])
+	for card_id : String in CardDatabase.cards:
+		mega_binder.cards.set(card_id, 1)
 	var ticks_After : int = Time.get_ticks_msec()
 	print("creating mega binder with " + str(mega_binder.cards.size()) + " cards took " + str(ticks_After - ticks_before) + "ms")
 	mega_binder.resource_path = MEGA_BINDER_LOCATION
 	ResourceSaver.save(mega_binder, MEGA_BINDER_LOCATION)
 	binders[mega_binder.resource_name] = mega_binder
-
-func get_all_res_files(path: String) -> Array[String]:
-	var results: Array[String] = []
-	var dir := DirAccess.open(path)
-	
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				if file_name != "." and file_name != "..":
-					results += get_all_res_files(path.path_join(file_name))
-			else:
-				if file_name.ends_with(".res"):
-					results.append(path.path_join(file_name))
-			file_name = dir.get_next()
-		dir.list_dir_end()
-	else:
-		push_error("Cannot open directory: " + path)
-	
-	return results
 
 func save_binder(_binder_name) -> void:
 	print("save binder")

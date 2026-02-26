@@ -463,11 +463,12 @@ func save_cards() -> void:
 		await already_saved_dialog.confirmed
 		return
 	for card_key : String in PackOpenHelper.opened_cards.keys():
+		var qty : int = PackOpenHelper.opened_cards[card_key][0]
 		if binder.cards.has(card_key):
-			binder.cards[card_key][0] += PackOpenHelper.opened_cards[card_key][0]
+			binder.cards[card_key] += qty
 		else:
-			binder.cards[card_key] = PackOpenHelper.opened_cards[card_key]
-		total_cards_saved += PackOpenHelper.opened_cards[card_key][0]
+			binder.cards[card_key] = qty
+		total_cards_saved += qty
 
 	ResourceSaver.save(binder, binder.resource_path)
 	cards_saved = true

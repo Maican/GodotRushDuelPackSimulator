@@ -168,7 +168,7 @@ func add_card_to_main(quantity_and_card_array: Array):
 		deck_card_scene.card_move_to_main.connect(move_card_to_main)
 		main_deck_grid_container.add_child(deck_card_scene)
 		if current_banlist:
-			if card_id in current_banlist.cards.keys():
+			if card_id in current_banlist.cards:
 				deck_card_scene.ban_card()
 		deck_card_scene.set_card_quantity(quantity)
 	populate_card_totals()
@@ -202,7 +202,7 @@ func add_card_to_inventory(quantity_and_card_array: Array):
 		inventory_grid_container.add_child(deck_card_scene)
 		deck_card_scene.set_card_quantity(quantity)
 		if current_banlist:
-			if card_id in current_banlist.cards.keys():
+			if card_id in current_banlist.cards:
 				deck_card_scene.ban_card()
 	populate_card_totals()
 
@@ -235,7 +235,7 @@ func add_card_to_maybe(quantity_and_card_array: Array):
 		extra_deck_grid_container.add_child(deck_card_scene)
 		deck_card_scene.set_card_quantity(quantity)
 		if current_banlist:
-			if card_id in current_banlist.cards.keys():
+			if card_id in current_banlist.cards:
 				deck_card_scene.ban_card()
 	populate_card_totals()
 
@@ -309,11 +309,11 @@ func save_cards_to_deck() -> void:
 		return
 	deck.clear_deck()
 	for card_id : String in main_cards:
-		deck.main_deck.set(card_id, main_cards[card_id])
+		deck.main_deck.set(card_id, main_cards[card_id][0])
 	for card_id : String in inventory_cards:
-		deck.inventory.set(card_id, inventory_cards[card_id])
+		deck.inventory.set(card_id, inventory_cards[card_id][0])
 	for card_id : String in maybe_cards:
-		deck.maybes.set(card_id, maybe_cards[card_id])
+		deck.maybes.set(card_id, maybe_cards[card_id][0])
 
 	ResourceSaver.save(deck, deck.resource_path)
 
@@ -336,11 +336,17 @@ func load_cards_from_deck() -> void:
 	
 	remove_all_cards()
 	for card_id : String in deck.main_deck:
-		add_card_to_main(deck.main_deck[card_id])
+		var card_resource := CardDatabase.get_card(card_id)
+		if card_resource != null:
+			add_card_to_main([deck.main_deck[card_id], card_resource])
 	for card_id : String in deck.inventory:
-		add_card_to_inventory(deck.inventory[card_id])
+		var card_resource := CardDatabase.get_card(card_id)
+		if card_resource != null:
+			add_card_to_inventory([deck.inventory[card_id], card_resource])
 	for card_id : String in deck.maybes:
-		add_card_to_maybe(deck.maybes[card_id])
+		var card_resource := CardDatabase.get_card(card_id)
+		if card_resource != null:
+			add_card_to_maybe([deck.maybes[card_id], card_resource])
 
 func remove_card(card_scene : DeckCard, quantity_to_remove : int = 1) -> void:
 	var new_quantity: int = 0
@@ -418,8 +424,10 @@ func export_deck() -> void:
 	
 	# Group main deck cards by type
 	for card_id : String in deck.main_deck:
-		var card_resource : CardResource = deck.main_deck[card_id][1]
-		var quantity : int = deck.main_deck[card_id][0]
+		var card_resource : CardResource = CardDatabase.get_card(card_id)
+		if card_resource == null:
+			continue
+		var quantity : int = deck.main_deck[card_id]
 		var card_line : String = str(quantity) + " " + card_resource.name
 		
 		match card_resource.card_type:
@@ -452,16 +460,20 @@ func export_deck() -> void:
 	if deck.inventory.size() > 0:
 		recipe += "Side\n"
 		for card_id : String in deck.inventory:
-			var card_resource : CardResource = deck.inventory[card_id][1]
-			var quantity : int = deck.inventory[card_id][0]
+			var card_resource : CardResource = CardDatabase.get_card(card_id)
+			if card_resource == null:
+				continue
+			var quantity : int = deck.inventory[card_id]
 			recipe += str(quantity) + " " + card_resource.name + "\n"
 	
 	# Add Extra Deck section if there are cards
 	if deck.inventory.size() > 0:
 		recipe += "Extra\n"
 		for card_id : String in deck.maybes:
-			var card_resource : CardResource = deck.maybes[card_id][1]
-			var quantity : int = deck.maybes[card_id][0]
+			var card_resource : CardResource = CardDatabase.get_card(card_id)
+			if card_resource == null:
+				continue
+			var quantity : int = deck.maybes[card_id]
 			recipe += str(quantity) + " " + card_resource.name + "\n"
 
 	DisplayServer.clipboard_set(recipe)

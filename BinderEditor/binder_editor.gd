@@ -97,7 +97,7 @@ func add_card_to_binder(quantity_and_card_array: Array):
 		deck_card_scene.card_remove.connect(remove_card)
 		binder_cards_grid_container.add_child(deck_card_scene)
 		if current_banlist:
-			if card_id in current_banlist.cards.keys():
+			if card_id in current_banlist.cards:
 				deck_card_scene.ban_card()
 		deck_card_scene.set_card_quantity(quantity)
 
@@ -172,7 +172,7 @@ func save_cards_to_binder() -> void:
 
 	binder.clear_binder()
 	for card_id : String in selected_binder_cards.keys():
-		binder.cards[card_id] = selected_binder_cards[card_id]
+		binder.cards[card_id] = selected_binder_cards[card_id][0]
 
 	ResourceSaver.save(binder, binder.resource_path)
 
@@ -196,8 +196,10 @@ func load_cards_from_binder() -> void:
 	remove_all_cards()
 	var total_binder_cards : int = 0
 	for card_id : String in binder.cards.keys():
-		var card_resource : CardResource = binder.cards[card_id][1]
-		var card_quantity : int = binder.cards[card_id][0]
+		var card_resource : CardResource = CardDatabase.get_card(card_id)
+		if card_resource == null:
+			continue
+		var card_quantity : int = binder.cards[card_id]
 		total_binder_cards += card_quantity
 		add_card_to_binder([card_quantity, card_resource])
 	binder_cards_label.text = "Binder Cards " + str(total_binder_cards)
