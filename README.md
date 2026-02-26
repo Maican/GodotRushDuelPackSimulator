@@ -70,8 +70,8 @@ The Binder Editor lets you organize and manage your card collection across named
 
 The screen is split into two panels:
 
-- **Left panel** — Your **All Cards** pool (the master collection), with a filter/search panel to narrow down cards.
-- **Right panel** — The currently selected binder's contents.
+- **Left panel** — The currently selected binder's contents.
+- **Right panel** — Your **All Cards** pool (the master collection), with a filter/search panel to narrow down cards.
 
 ### Workflow
 
@@ -144,13 +144,13 @@ The Banlist Editor lets you create custom restriction lists to use in the Deck E
 
 ### Layout
 
-The right panel shows three restriction tiers:
+The left panel shows three restriction tiers:
 
 - **Banned** — Cards that cannot be used.
 - **Limited** — Cards restricted to 1 copy.
 - **Semi-Limited** — Cards restricted to 2 copies.
 
-The left panel shows the full All Cards pool for browsing.
+The right panel shows the full All Cards pool for browsing.
 
 ### Workflow
 
