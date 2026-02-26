@@ -185,3 +185,9 @@ Available filters:
 - **Level / ATK / DEF** — Minimum value spinboxes (set to -1 to ignore)
 
 Click **Set Filters** to apply, or **Clear Filters** to reset all selections.
+
+Additional thanks:
+https://azagaya.itch.io/minimalistic-ui
+yugipedia and their API for the images.
+rushcard.io (initially used for testing/images)
+
